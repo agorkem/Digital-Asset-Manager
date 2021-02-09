@@ -1,10 +1,10 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const AssetRepo = require('./repository/AssetRepo');
-const FolderRepo = require('./repository/FolderRepo');
+const AssetRepo = require("./repository/AssetRepo");
+const FolderRepo = require("./repository/FolderRepo");
  
 const connectDB = () => {
-  return mongoose.connect('mongodb://localhost/test', { useNewUrlParser: true });
+  return mongoose.connect("mongodb://localhost/test", { useNewUrlParser: true, useUnifiedTopology: true });
 };
  
 const Repositories = { AssetRepo, FolderRepo };

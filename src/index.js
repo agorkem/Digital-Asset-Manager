@@ -1,14 +1,15 @@
-const { Repos, connectDB } = require('./database');
-const DirectoryLinker = require('./helpers/DirectoryLinker');
+const { Repos, connectDB } = require("./database");
+const DirectoryLinker = require("./helpers/DirectoryLinker");
 
+try {
 connectDB().then(connection => {
-  console.log('Database Connection established.');
+  console.log("Database Connection established.");
 
-  if (process.env.ACTION === 'linking') {
-    DirectoryLinker(Repos);
+  if (process.env.NODE_ENV === "linking") {
+    DirectoryLinker("./testFolder", Repos);
   } else {
     (async () => {
-      const folder = await Repos.FolderRepo.listDirectoryByPath('testFolder');
+      const folder = await Repos.FolderRepo.listDirectoryByPath("testFolder");
       console.log({
         ...folder,
         assets: folder.assets.map(assets => assets.name),
@@ -17,3 +18,6 @@ connectDB().then(connection => {
   }
 
 });
+} catch (err) {
+  console.error(err);
+}

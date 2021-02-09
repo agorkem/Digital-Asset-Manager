@@ -1,8 +1,6 @@
-const fs = require('fs');
-const util = require('util');
-const path = require('path');
-const AssetRepo = require('../database/repository/AssetRepo');
-const FolderRepo = require('../database/repository/FolderRepo');
+const fs = require("fs");
+const util = require("util");
+const path = require("path");
 
 function print(input) {
   const numberOfLines = (input.match(/\n/g) || []).length;
@@ -57,8 +55,8 @@ async function populateDirectoryStructure(basePath) {
   }
 }
 
-async function DirectoryLinker(dir,repos) {
-  console.log('Linking directory.')
+async function DirectoryLinker(dir, repos) {
+  console.log("Linking directory.")
   try {
     await await repos.AssetRepo.deleteAll({});
     await await repos.FolderRepo.deleteAll({});
@@ -100,7 +98,7 @@ async function DirectoryLinker(dir,repos) {
         print(`Assets left: ${assetNumber} | Directories left: ${directoryCount}`);
       }
     }
-    print('Directory linking completed.');
+    print("Directory linking completed.");
   } catch(err) {
     console.error("Error: Couldn't link files to database:", err);
   }
